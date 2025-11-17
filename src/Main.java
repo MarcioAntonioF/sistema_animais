@@ -4,13 +4,13 @@ import java.util.Scanner;
 
 public class Main {
 
-    public static void main(String[] args) {
+   public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    AnimalDAO dao = new AnimalDAO();
+    dao.criarTabela(); 
 
-        Scanner sc = new Scanner(System.in);
-        AnimalDAO dao = new AnimalDAO();
-        dao.criarTabela();
 
-        int op = -1;
+    int op = -1;
 
         while (op != 0) {
             System.out.println("\n=== MENU ===");
@@ -60,3 +60,5 @@ public class Main {
         sc.close();
     }
 }
+
+

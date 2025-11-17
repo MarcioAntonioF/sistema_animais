@@ -5,9 +5,28 @@ import java.util.ArrayList;
 
 public class AnimalDAO {
 
-    private Connection conectar() throws SQLException {
-        return DriverManager.getConnection("jdbc:sqlite:animais.db");
+   private Connection conectar() throws SQLException {
+    String path = "animais.db";
+    System.out.println("Tentando conectar com o banco: " + new java.io.File(path).getAbsolutePath());
+    Connection conn = DriverManager.getConnection("jdbc:sqlite:" + path);
+    System.out.println("Conexão estabelecida!");
+    return conn;
+}
+
+
+public void limparTabela() {
+    String sql = "DELETE FROM animais"; // Comando SQL que apaga todos os registros
+
+    try (Connection conn = conectar();
+         Statement st = conn.createStatement()) {
+
+        st.executeUpdate(sql); // Executa o comando
+        System.out.println("Tabela de animais limpa com sucesso!");
+
+    } catch (Exception e) {
+        e.printStackTrace();
     }
+}
 
     public void criarTabela() {
         String sql = "CREATE TABLE IF NOT EXISTS animais (" +
